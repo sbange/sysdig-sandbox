@@ -20,14 +20,15 @@ sudo csysdig
 Start filtering, do more, see http://www.sysdig.org/wiki/chisels-user-guide
 
 #### Examples
-Tail all log files (matching *.log, _log, etc.) any process is writing to
+Tail all log files (matching *.log, _log, etc.) any process is writing to, filter
 ```bash
 sudo sysdig -c spy_logs
+sudo sysdig -c spy_logs evt.buffer contains error
 ```
 
-Log last 10 minutes of activity before application "app" crashes/exits
+Log last 10 minutes of activity before application "app" crashes/exits to file dump.scap
 ```bash
-sudo sysdig -G 60 -W 10 -wdump.scap proc.name=app
+sudo sysdig -G 60 -W 10 -w dump.scap proc.name=app
 ```
 
 List all chisels
